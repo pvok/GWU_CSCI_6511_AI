@@ -1,0 +1,7 @@
+(clear)
+(load TravelerTemplates.clp)
+(load TravelerFacts.clp)
+(load menu.clp)
+(load Rule.clp)
+(reset)
+(run)

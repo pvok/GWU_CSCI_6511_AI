@@ -1,0 +1,43 @@
+;;***********
+;;
+;; TravelerTemplates.clp
+;;
+;; this file contains the load commands for initializing the ChemAdvisor.
+;;***********
+
+(deftemplate Station "Description of Station"
+	(slot name (type SYMBOL))
+	(multislot line (type SYMBOL))
+	(multislot zone (type INTEGER))
+	(slot Interchange (type SYMBOL) (allowed-symbols yes no) (default no))
+	(slot InternalInterchange (type SYMBOL) (allowed-symbols yes no) (default no))
+)
+
+(deftemplate NextStation "Description of Next Station"
+	(slot CurrStation (type SYMBOL))
+	(multislot CurrStationLine (type SYMBOL))
+	(slot NextStation (type SYMBOL))
+	(multislot NextStationLine (type SYMBOL))
+)
+
+(deftemplate Line "Description of lines"
+	(slot name (type SYMBOL))
+	(multislot startingStation (type SYMBOL))
+	(multislot endingStation (type SYMBOL))
+	(multislot stationList (type SYMBOL))
+	(multislot stationtoStationTimes (type INTEGER))
+	(multislot transferBetween (type SYMBOL) (default nil))
+)
+
+(deftemplate Attraction "the attractions in London area"
+   (slot name (type SYMBOL))
+   (slot nearbyStations (type SYMBOL))
+   (slot description (type STRING))
+)
+
+(deffacts fare "fare between zones"
+	(fare (StartStationZone 1)(DestinationStationZone 1)(amount 2.4))
+	(fare (StartStationZone 2)(DestinationStationZone 2)(amount 2.4))
+	(fare (StartStationZone 1)(DestinationStationZone 2)(amount 2.9))
+	(fare (StartStationZone 2)(DestinationStationZone 1)(amount 2.9))
+)
